@@ -1,0 +1,21 @@
+version: '3.3'
+
+services:
+  db:
+    image: mysql/mysql-server:8.0
+    container_name: db
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'testdb'
+      MYSQL_ROOT_PASSWORD: 'test'
+      MYSQL_ROOT_HOST: '%'
+      MYSQL_USER: db_user
+      MYSQL_PASSWORD: db_user_pass
+    ports:
+      - '3306:3306'
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./data/db:/var/lib/mysql
+
+volumes:
+  db_data:
